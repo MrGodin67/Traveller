@@ -103,45 +103,7 @@ public:
 		Vec2f result = distance - (collisionBox.half_extents + other.half_extents);
 		return Collision(result, result.x < 0.0f && result.y < 0.0f);
 	};
-	void MovingEntitiesCollisionCorrection(Entity* other, const Collision& collision)
-	{
-		Vec2f Apos, Bpos;
-		Apos = collisionBox.center;
-		Bpos = other->Get<Collider>().AABB().Center();
-		Vec2f Avel = transform->velocity;
-		Vec2f Bvel = other->Get<Transform>().velocity;
-		Avel.Normalize();
-		Bvel.Normalize();
-		Vec2f correction = Apos - Bpos;
-		if (collision.distance.x > collision.distance.y)
-		{
-			if (correction.x > 0.0f)
-			{
-				Apos.x +=  Sign<float>(Avel.x)*(collision.distance.x);
-				Bpos.x += Sign<float>(Bvel.x)*(collision.distance.x);
-			}
-			else
-			{
-				Apos.x += Sign<float>(Avel.x)*-(collision.distance.x);
-				Bpos.x += Sign<float>(Bvel.x)* (collision.distance.x);
-			}
-		}
-		else
-		{
-			if (correction.y > 0.0f)
-			{
-				Apos.y += Sign<float>(Avel.y)* (collision.distance.y);
-				Bpos.y += Sign<float>(Bvel.y)* -(collision.distance.y);
-			}
-			else
-			{
-				Apos.y += Sign<float>(Avel.y)*-(collision.distance.y);
-				Bpos.y += Sign<float>(Bvel.y)*(collision.distance.y);
-			}
-		}
-		transform->position = Apos + -(collisionBox.half_extents);
-		other->Get<Transform>().position = Bpos + -(other->Get<Collider>().AABB().half_extents);
-	}
+	
 	void StaticCollisionCorrection(const BoundingBox& other, const Collision& collision)
 	{
 		Vec2f correction = other.Center() - collisionBox.center;
