@@ -3,6 +3,7 @@
 class ActorInventory;
 class ActorEquippedItems
 {
+
 	friend class ActorInventory;
 	std::unordered_map<EquippedItems, Item*> m_items;
 	bool it;
