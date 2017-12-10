@@ -16,7 +16,7 @@ public:
 	{}
 	~FollowCompanion();
 	virtual void Update(const float& dt)override;
-	virtual void Init();
+	virtual void Init()override;
 };
 class SpringFrom :
 	public Component

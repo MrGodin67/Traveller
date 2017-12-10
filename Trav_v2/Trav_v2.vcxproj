@@ -151,10 +151,12 @@
     <ClCompile Include="Chest.cpp" />
     <ClCompile Include="D2DWindow.cpp" />
     <ClCompile Include="EntityComponentSystem.cpp" />
+    <ClCompile Include="EntityContainer.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="ItemComp.cpp" />
+    <ClCompile Include="ItemFactory.cpp" />
     <ClCompile Include="IUserInterface.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="InputController.cpp" />
@@ -191,12 +193,14 @@
     <ClInclude Include="Components.h" />
     <ClInclude Include="D2DWindow.h" />
     <ClInclude Include="EntityComponentSystem.h" />
+    <ClInclude Include="EntityContainer.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="D2DStuff.h" />
     <ClInclude Include="ItemComp.h" />
+    <ClInclude Include="ItemFactory.h" />
     <ClInclude Include="IUserInterface.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="InputController.h" />

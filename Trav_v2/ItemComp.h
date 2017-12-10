@@ -7,6 +7,7 @@ enum class WeaponSubTypes : std::size_t { Sword, Axe, PoleAxe,Bow,Staff,Wand,num
 enum class ArmorSubTypes : std::size_t {  Body, Helm, Gloves, Boots, Shield, numbTypes,None };
 enum class PotionSubTypes : std::size_t {Health, Mana, Invisible, numbTypes,None };
 enum class EquippedItems : std::size_t {body,weapon,armor,boots,gloves,helm,ring1,ring2,amulet,numbEquppedItems,none};
+enum class ItemClass : std::size_t { basic,crafted,magic,rare };
 
 class Item : public Component
 {

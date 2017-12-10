@@ -1,5 +1,6 @@
 #pragma once
 #include "EntityComponentSystem.h"
+enum GroupLabels : std::size_t;
 class EntityManager;
 class MapLayer
 {

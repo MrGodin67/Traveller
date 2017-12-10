@@ -34,7 +34,6 @@ void MapLayer::Load(const int * map, EntityManager & manager, const GroupLabels 
 		for (int c : Iterate(0, map_width))
 		{
 			// get value at map index
-			int index = r *  map_width + c;
 			int mapTag = map[r *  map_width + c];
 			if (mapTag != discard)
 			{
@@ -98,10 +97,7 @@ void MapLayer::Load(const int * map, EntityManager & manager, const GroupLabels 
 				}
 				
 			}
-			else
-			{
-				int f = mapTag;
-			}
+			
 			// increment along columns
 			position.x += (float)cell_width;
 		}

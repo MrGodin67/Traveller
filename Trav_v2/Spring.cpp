@@ -15,7 +15,7 @@ FollowCompanion::~FollowCompanion()
 
 void FollowCompanion::Update(const float & dt)
 {
-	Vec2f dist = (host->Get<Transform>().position - weight->Get<Transform>().position);
+	Vec2f dist = (host->Get<Transform>().Center() - weight->Get<Transform>().Center());
 	float len = dist.Len();
 	if (len > maxSeparation)
 	{

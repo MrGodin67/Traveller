@@ -4,6 +4,7 @@
 ID2D1HwndRenderTarget* Locator::rt = nullptr;
 Renderer* Locator::renderer = nullptr;
 TextManager* Locator::text = nullptr;
+ImageManager* Locator::images = nullptr;
 Locator::Locator()
 {
 }
@@ -26,6 +27,16 @@ void Locator::SetRenderTarget(ID2D1HwndRenderTarget * target)
 void Locator::SetTextManager(TextManager * t)
 {
 	text = t;
+}
+
+void Locator::SetImageManager(ImageManager * i)
+{
+	images = i;
+}
+
+ImageManager * Locator::Images()
+{
+	return images;
 }
 
 ID2D1HwndRenderTarget * Locator::RenderTarget()

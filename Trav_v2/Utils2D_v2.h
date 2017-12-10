@@ -14,11 +14,11 @@
 static const double EPS = 0.0000000001;
 #define PI (float)M_PI
 
-
+static RandomGenerator<std::mt19937> randG;
 template<typename T>
 static bool GetRandomResult(const T& arg1, const T& arg2, const T& compare_with)
 {
-	RandomGenerator<std::mt19937> randG;
+	
 	T result = randG.Get<T>(arg1, arg2);
 	return result < compare_with;
 }

@@ -1,14 +1,14 @@
 #include "stdafx.h"
 #include "UserInterfaceManager.h"
 #include "D2DWindow.h"
-
+#include "Locator.h"
 void UserInterfaceManager::SetUpSelectWindow()
 {
 	
 	int placeX, placeY;
 	this->CenterUIObject(512, 512, placeX, placeY);
 	m_SelectWindow = std::make_unique<UISelectUser>(placeX, placeY, 512, 512);
-	m_SelectWindow->SetImage(TextureLoader::Load(L"assets\\window.png"));
+	m_SelectWindow->SetImage(Locator::Images()->Load(L"assets\\window.png"));
 	m_SelectWindow->AddItem(new UIButton(UI_RETURN_ACTION_USER_SELECTED, L"Select", "Tahoma14"), 32 - 5, 4);
 	m_SelectWindow->AddItem(new UIButton(UI_RETURN_ACTION_BACK, L"Back", "Tahoma14"), 32 - 5, 32 - 8);
 	m_SelectWindow->AddItem(new UITextBox(UI_RETURN_ACTION_NONE, L"Select User", 512 - (16 * 6), 200, "Tahoma22", true), 3, 3);
@@ -23,7 +23,7 @@ void UserInterfaceManager::SetUpStartWindow()
 	int placeX, placeY;
 	this->CenterUIObject(512, 512, placeX, placeY);
 	m_StartWindow = std::make_unique<UIStartScreen>(placeX, placeY, 512, 512);
-	m_StartWindow->SetImage(TextureLoader::Load(L"assets\\window.png"));
+	m_StartWindow->SetImage(Locator::Images()->Load(L"assets\\window.png"));
 	m_StartWindow->AddItem(new UIButton(UI_RETURN_ACTION_CONTINUE, L"Continue", "Tahoma14"), 32 - 5, 4);
 	m_StartWindow->AddItem(new UIButton(UI_RETURN_ACTION_NEW_GAME, L"New", "Tahoma14"), 32 - 5, 4 + 5);
 	m_StartWindow->AddItem(new UIButton(UI_RETURN_ACTION_EXIT, L"Exit", "Tahoma14"), 32 - 5, 32 - 8);

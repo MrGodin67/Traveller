@@ -1,19 +1,19 @@
 #include "stdafx.h"
 #include "TextureLoader.h"
 #include "Locator.h"
-std::unordered_map<std::wstring,ID2D1Bitmap*> TextureLoader::m_images;
 
-TextureLoader::TextureLoader()
+
+ImageManager::ImageManager()
 {
 }
 
-TextureLoader::~TextureLoader()
+ImageManager::~ImageManager()
 {
 	for (auto& it : m_images)
 		SafeRelease(&it.second);
 }
 
-ID2D1Bitmap * TextureLoader::Load(const std::wstring & filename)
+ID2D1Bitmap * ImageManager::Load(const std::wstring & filename)
 {
 	if (m_images[filename])
 		return m_images[filename];

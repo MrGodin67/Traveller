@@ -1,11 +1,11 @@
 #pragma once
 // This will release images
-class TextureLoader
+class ImageManager
 {
-	static std::unordered_map<std::wstring, ID2D1Bitmap*> m_images;
+	std::unordered_map<std::wstring, ID2D1Bitmap*> m_images;
 public:
-	TextureLoader();
-	~TextureLoader();
-	static ID2D1Bitmap* Load(const std::wstring& filename);
+	ImageManager();
+	~ImageManager();
+	ID2D1Bitmap* Load(const std::wstring& filename);
 };
 

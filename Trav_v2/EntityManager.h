@@ -1,6 +1,19 @@
 #pragma once
 #include "Components.h"
 #include "Camera.h"
+enum  GroupLabels : std::size_t
+{
+	groupMapLayer1,
+	groupMapLayer2,
+	groupActors,
+	groupPlayers,
+	groupEnemies,
+	groupCollider,
+	groupItems,
+	groupChest,
+	groupRender,
+	groupLight
+};
 class EntityManager
 {
 	std::vector<std::unique_ptr<Entity>> entities;

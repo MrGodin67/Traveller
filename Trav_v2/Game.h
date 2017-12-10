@@ -8,6 +8,7 @@
 #include "Chest.h"
 #include "MapLayer.h"
 #include "Actor.h"
+#include "TextureLoader.h"
 const char mapNames[10][MAX_PATH] =
 {
 	{ "test.bin" },
@@ -31,6 +32,7 @@ class Game
 	RectF m_backGroundColor;
 	std::unique_ptr<EntityManager> m_EntityMgr;
 	std::unique_ptr<TextManager> m_textMgr;
+	std::unique_ptr<ImageManager> m_imageMgr;
 	std::unique_ptr<UserInterfaceManager> m_UserInterfaceMgr;
 	Camera m_cam;
 	GameState m_gameState = GameState::running;

@@ -8,7 +8,9 @@
 void Game::InitECS()
 {
 	m_EntityMgr = MakeUnique<EntityManager>(m_cam);
-	
+	m_imageMgr = MakeUnique<ImageManager>();
+	Locator::SetImageManager(m_imageMgr.get());
+
 	Entity::SetManager(m_EntityMgr.get());
 	/*chest = &m_EntityMgr->Add<Chest>();
 	chest->Init( TextureLoader::Load(L"assets\\window.png"), RectF(0, 0, 64, 64), Vec2f(74.0f,74.0f), Vec2f(64,64), 1);
@@ -43,7 +45,7 @@ void Game::InitECS()
 	testActor3->AddGroup(groupCollider);
 	testActor3->AddGroup(groupMapLayer1);
 	Item i;
-	i.image = TextureLoader::Load(L"assets\\charatures.png");
+	i.image = m_imageMgr->Load(L"assets\\charatures.png");
 	i.srcRect = { 0.0f,0.0f,32.0f,32.0f };
 	testActor->AddItem(i, EquippedItems::body);
 	testActor2->AddItem(i, EquippedItems::body);
@@ -59,7 +61,7 @@ void Game::InitECS()
 	i.srcRect = { 2*32.0f,5 * 32.0f,3*32.0f,6 * 32.0f };
 	testActor->AddItem(i, EquippedItems::helm);
 
-	i.image = TextureLoader::Load(L"assets\\weapons.png");
+	i.image = m_imageMgr->Load(L"assets\\weapons.png");
 	i.srcRect = { 32.0f*7,4 * 32.0f,32.0f*8,5 * 32.0f };
 	Item* it = testActor->AddItem(i, EquippedItems::weapon);
 	i.srcRect = { 32.0f * 7,5 * 32.0f,32.0f * 8,6 * 32.0f };
@@ -72,7 +74,7 @@ void Game::LoadLevel(const unsigned int& index)
 {
 	LevelData data;
 	FileManager::ReadLevelFile(mapNames[index], data);
-	ID2D1Bitmap* m_image = TextureLoader::Load(data.image_path);
+	ID2D1Bitmap* m_image = m_imageMgr->Load(data.image_path);
 	Assert(m_image);
 	MapLayer::SetValues(m_image, data.width, data.height, data.image_size,64, data.cell_width, data.cell_height, -1);
 	MapLayer::Load(data.mapLayer1, *m_EntityMgr.get(), groupMapLayer1);

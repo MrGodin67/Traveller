@@ -7,7 +7,6 @@ void EntityManager::Draw()
 {
 	// render by layers
 	for (auto& ent : GetGroup(groupRender))ent->Draw();
-
 	for (auto& ent : GetGroup(groupItems))ent->Draw();
 	for (auto& ent : GetGroup(groupEnemies))ent->Draw();
 	//for (auto& ent : GetGroup(groupPlayers))ent->Draw();

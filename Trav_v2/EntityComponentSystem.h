@@ -6,8 +6,10 @@
 class Component;
 class Entity;
 class EntityManager;
+enum GroupLabels;
 using ComponentID = std::size_t;
 using GroupID = std::size_t;
+
 inline ComponentID getComponentTypeID()
 {
 	static ComponentID cID = 0;
@@ -26,19 +28,7 @@ using ComponentBitSet = std::bitset<maxComponents>;
 using ComponentArray = std::array<Component*, maxComponents>;
 using GroupBitSet = std::bitset<maxGroups>;
 
-enum GroupLabels : std::size_t
-{
-	groupMapLayer1,
-	groupMapLayer2,
-	groupActors,
-	groupPlayers,
-	groupEnemies,
-	groupCollider,
-	groupItems,
-	groupRender,
-	groupChest,
-	groupLight
-};
+
 
 
 class Component
