@@ -24,7 +24,7 @@ void FollowCompanion::Update(const float & dt)
 	}
 	dist.ConfineLength(len - separation);
 	weight->Get<Transform>().velocity = dist*tension;
-	
+	weight->Get<Transform>().CapVelocity();
 
 }
 

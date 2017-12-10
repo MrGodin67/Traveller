@@ -38,8 +38,6 @@ public:
 	}
 	
 	bool GetLineOfSight(const Vec2f& from,const Vec2f& to);
-	bool DoCollision(Entity * A, Entity * B, std::vector<RectF>& collisionRects);
-	bool DoCollision(Entity* ent);
-	bool DoCollision(Entity* ent, Collider& collider);
+	
 	void DoLight();
 };

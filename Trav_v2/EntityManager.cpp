@@ -19,7 +19,7 @@ void EntityManager::Draw()
 
 void EntityManager::Update(const float & dt)
 {
-	RectF frustum = m_cam.Frustum();
+	
 	GetGroup(groupRender).clear();
 	// map first
 	HandlePlayer(dt);
@@ -101,13 +101,7 @@ void EntityManager::HandlePlayer(const float& dt)
 					players->Get<Collider>().StaticCollisionCorrection(it->Get<Collider>().AABB(), data);
 
 			}
-			/*if (it->HasGroup(groupPlayers)&& it->Has<Collider>() && it != players)
-			{
-				Collision data = players->Get<Collider>().AABBCollision(it->Get<Collider>().AABB());
-				if (data.intersecting)
-					players->Get<Collider>().MovingEntitiesCollisionCorrection(it, data);
-
-			}*/
+			
 		}
 		m_cam.UpdatePosition(GetGroup(groupPlayers)[m_currentPlayer]->Get<Transform>().Center());
 		
@@ -172,24 +166,6 @@ bool EntityManager::GetLineOfSight(const Vec2f& from, const Vec2f& to)
 	return true;
 }
 
-bool EntityManager::DoCollision(Entity * A,Entity * B, std::vector<RectF>& collisionRects)
-{
-	
-		
-		return false;
-}
-
-bool EntityManager::DoCollision(Entity * ent)
-{
-	
-	return false;
-}
-
-bool EntityManager::DoCollision(Entity * ent, Collider & collider)
-{
-	
-	return true;
-}
 
 void EntityManager::DoLight()
 {

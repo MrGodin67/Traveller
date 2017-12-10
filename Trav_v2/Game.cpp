@@ -31,7 +31,7 @@ void Game::InitECS()
 	
 
 	testActor->Add<Light>(300.0f);
-	testActor2->Add<Light>(500.0f);
+	
 	testActor->AddGroup(groupPlayers);
 	testActor->AddGroup(groupLight);
 	testActor->AddGroup(groupCollider);
@@ -39,7 +39,6 @@ void Game::InitECS()
 	testActor2->AddGroup(groupMapLayer1);
 	testActor2->AddGroup(groupPlayers);
 	testActor2->AddGroup(groupCollider);
-	testActor2->AddGroup(groupLight);
 	testActor3->AddGroup(groupPlayers);
 	testActor3->AddGroup(groupCollider);
 	testActor3->AddGroup(groupMapLayer1);
