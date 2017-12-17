@@ -2,6 +2,7 @@
 #include "MapLayer.h"
 #include "EntityManager.h"
 
+
  int MapLayer::map_width;
  int MapLayer::map_height;
  int MapLayer::image_clip_size;
@@ -28,6 +29,8 @@ void MapLayer::Load(const int * map, EntityManager & manager, const GroupLabels 
 	const Vec2f velocity = { 0.0f,0.0f };// no velocitiy
 	const Vec2f size((float)image_draw_size, (float)image_draw_size);
 	int sizeT = sizeof(&map) / sizeof(int);
+	int columnsP = map_height /6;
+	int rowsP = map_width / 6;
 	for (int r : Iterate(0, map_height))
 	{
 		position.x = 0.0f;
@@ -43,12 +46,7 @@ void MapLayer::Load(const int * map, EntityManager & manager, const GroupLabels 
 				float y = (float)(mapTag / columns) * (float)image_clip_size;// data.cell_height;
 				RectF sourceRect = { x,y,x + (float)image_clip_size,y + (float)image_clip_size };
 				// create entity with a transform
-				Entity* tile = &manager.Add(position, velocity, size);
 				
-				// add tile component
-				tile->Add<TileComp>(image, sourceRect);
-				// add to map group			
-				tile->AddGroup(label);
 				
 				// add colliders where needed
 				switch (label)
@@ -60,6 +58,12 @@ void MapLayer::Load(const int * map, EntityManager & manager, const GroupLabels 
 					case 4:
 					case 7:
 					{
+						Entity* tile = &manager.Add(position, velocity, size);
+
+						// add tile component
+						tile->Add<TileComp>(image, sourceRect);
+						// add to map group			
+						tile->AddGroup(label);
 						Collider* c = &tile->Add<Collider>((position + -(size * 0.5f)), size * 0.5f);
 						// used for debug purpose
 						c->doDraw = false;
@@ -67,8 +71,12 @@ void MapLayer::Load(const int * map, EntityManager & manager, const GroupLabels 
 						break;
 					}
 					default:
-						// colliders have a sphere and rect
-						// create with a radius
+						Entity* tile = &manager.Add(position, velocity, size);
+
+						// add tile component
+						tile->Add<TileComp>(image, sourceRect);
+						// add to map group			
+						tile->AddGroup(label);
 						break;
 					}
 				}
@@ -77,18 +85,25 @@ void MapLayer::Load(const int * map, EntityManager & manager, const GroupLabels 
 				{
 					switch (mapTag)
 					{
-					case 30:// health fountain
+					
 					case 42://potion
+					{
+						
+						
+						break;
+					}
 					case 37://chest
 					{
-						Collider* c = &tile->Add<Collider>((position + -(size * 0.5f)), size * 0.5f);
-						// used for debug purpose
-						c->doDraw = false;
-						tile->AddGroup(groupCollider);
+								
 						break;
 					}
 					default:
-						
+						Entity* tile = &manager.Add(position, velocity, size);
+
+						// add tile component
+						tile->Add<TileComp>(image, sourceRect);
+						// add to map group			
+						tile->AddGroup(label);
 						break;
 					}
 				}

@@ -13,10 +13,10 @@ ImageManager::~ImageManager()
 		SafeRelease(&it.second);
 }
 
-ID2D1Bitmap * ImageManager::Load(const std::wstring & filename)
+ID2D1Bitmap * ImageManager::Load(const std::string& name,const std::wstring & filename)
 {
-	if (m_images[filename])
-		return m_images[filename];
+	if (m_images[name])
+		return m_images[name];
 	
 	IWICBitmapDecoder *pDecoder = nullptr;
 	IWICBitmapFrameDecode *pFrame = nullptr;
@@ -51,13 +51,23 @@ ID2D1Bitmap * ImageManager::Load(const std::wstring & filename)
 		
 
 		if (SUCCEEDED(hr))
-			hr = Locator::RenderTarget()->CreateBitmapFromWicBitmap(pBitmap, &m_images[filename]);
+			hr = Locator::RenderTarget()->CreateBitmapFromWicBitmap(pBitmap, &m_images[name]);
 	}
 	Assert(hr == S_OK);
 
 	SafeRelease(&pFactory);
-	SafeRelease(&pBitmap);
 	SafeRelease(&pDecoder);
 	SafeRelease(&pFrame);
-	return m_images[filename];
+	SafeRelease(&pConverter);
+	SafeRelease(&pBitmap);
+	
+	
+	return m_images[name];
+}
+
+ID2D1Bitmap * ImageManager::Get(const std::string & name)
+{
+	if (m_images[name])
+		return m_images[name];
+	return nullptr;
 }

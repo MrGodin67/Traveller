@@ -84,22 +84,14 @@ public:
 	{
 		collisionBox.center = collisionSphere.center = transform->Center();
 	}
-	virtual void Draw()override
-	{
-		if (doDraw)
-		{
-			Locator::Graphics()->DrawRectangle(owner->Get<Transform>().Matrix(),
-				owner->Get<Transform>().Rect().ToD2D(),
-				D2D1::ColorF(1.0f, 1.0f, 1.0f, 1.0f));
-		}
-	}
+	virtual void Draw()override;
 	BoundingBox AABB() { return collisionBox; }
 	SphereF Sphere() { return collisionSphere; }
 	Collision AABBCollision(const BoundingBox& other)
 	{
 		Vec2f distance = collisionBox.center - other.center;
-		distance.x = fabsf(distance.x);
-		distance.y = fabsf(distance.y);
+		distance = distance.Absolute();
+		
 		Vec2f result = distance - (collisionBox.half_extents + other.half_extents);
 		return Collision(result, result.x < 0.0f && result.y < 0.0f);
 	};

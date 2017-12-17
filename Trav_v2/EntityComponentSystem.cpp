@@ -1,13 +1,17 @@
 #include "stdafx.h"
 #include "EntityComponentSystem.h"
 #include "EntityManager.h"
-EntityManager* Entity::manager = nullptr;
-void Entity::SetManager(EntityManager * mgr)
+
+
+void Entity::DiffuseAlpha(const float & val)
 {
-	manager = mgr;
+	for (auto& it : m_components)
+		it->Fade(val);
 }
 void Entity::AddGroup(const GroupID & id)
 {
+	
+	
 	m_groupBitSet[id] = true;
-	manager->AddToGroup(this, id);
+	manager.AddToGroup(this, id);
 }

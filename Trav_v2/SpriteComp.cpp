@@ -64,3 +64,8 @@ void Sprite::Fade(const float & val)
 {
 	transparency = val;
 }
+
+void Sprite::SetSourceRect(const RectF & rect)
+{
+	srcRect = rect;
+}

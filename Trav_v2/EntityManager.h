@@ -1,27 +1,23 @@
 #pragma once
 #include "Components.h"
 #include "Camera.h"
-enum  GroupLabels : std::size_t
+
+#include "system.h"
+struct Partition
 {
-	groupMapLayer1,
-	groupMapLayer2,
-	groupActors,
-	groupPlayers,
-	groupEnemies,
-	groupCollider,
-	groupItems,
-	groupChest,
-	groupRender,
-	groupLight
+	std::vector<Entity*> items;
+	RectF frame;
 };
-class EntityManager
+class EntityManager 
 {
 	std::vector<std::unique_ptr<Entity>> entities;
 	std::array<std::vector<Entity*>, maxGroups> groups;
+
 	Camera& m_cam;
 	std::size_t  m_currentPlayer = 0;
 	void FrustumCull(Entity* ent);
 	void HandlePlayer(const float& dt);
+	//void PickUpItem(Entity* item, Actor* actor);
 public:
 	EntityManager(Camera& cam)
 		:m_cam(cam)
@@ -31,8 +27,9 @@ public:
 	void Update(const float& dt);
 	void Refresh();
 	void DestroyAll();
-	
+	void FlushAllGroups(Entity* ent);
 	void AddToGroup(Entity* ent, const GroupID& id);
+	void RemoveFromGroup(Entity* ent, const GroupID& id);
 	std::vector<Entity*>& GetGroup(const GroupID& id);
 	void AquireTarget(Entity* ent);
 	void TransformPosition(const Vec2f& offset);
@@ -51,6 +48,6 @@ public:
 	}
 	
 	bool GetLineOfSight(const Vec2f& from,const Vec2f& to);
-	
+	//void FireAmmo(const Vec2f& position, const Vec2f& direction, const Vec2f& size,Ammo * ammo);
 	void DoLight();
 };

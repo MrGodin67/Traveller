@@ -34,5 +34,6 @@ public:
 	void AddAnimationSequence(const std::string& id, const AnimationSeq& seq);
 	void SetCurrentAnimationSeq(const std::string& id);
 	void Fade(const float& val)override;
+	void SetSourceRect(const RectF& rect);
 
 };

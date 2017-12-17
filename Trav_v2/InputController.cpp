@@ -23,37 +23,37 @@ void InputController::Init()
 void InputController::Update(const float & dt)
 {
 	Keyboard::Event kbd_event = kbd.ReadKey();
-	velocity = { 0.0f,0.0f };
-	if (canMove)
-	{
+	 bool isMove = false;
+	
+	
 		if (kbd.KeyIsPressed(VK_UP))
 		{
-			velocity.y = -1.0f;
-
+			transform->acceleration -= speed;
+			isMove = true;
 		}
 		if (kbd.KeyIsPressed(VK_DOWN))
 		{
-			velocity.y = 1.0f;
-
+			transform->acceleration += speed;
+			isMove = true;
 		}
 		if (kbd.KeyIsPressed(VK_LEFT))
 		{
-			velocity.x = -1.0f;
+			transform->angle -= 1.5f;
 
 		}
 		if (kbd.KeyIsPressed(VK_RIGHT))
 		{
 
-			velocity.x = 1.0f;
+			transform->angle += 1.5f;
 		}
 		
-	}
-	
-	if (!canMove)
-		canMove = kbd.KeyIsEmpty();//kbd_event.IsRelease();
-
-	
-	
+		if(!isMove)
+		{
+			transform->acceleration *= 0.989f;
+		}
+		
+	transform->Rotate();
+	transform->velocity = transform->Facing();
 }
 
 void InputController::DisableMovement()

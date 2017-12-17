@@ -6,7 +6,7 @@
 
 const bool FULL_SCREEN = false;
 
-class D2DWindow
+class D2DWindow 
 {
 	
 	friend class Game;

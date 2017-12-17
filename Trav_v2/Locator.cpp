@@ -5,6 +5,9 @@ ID2D1HwndRenderTarget* Locator::rt = nullptr;
 Renderer* Locator::renderer = nullptr;
 TextManager* Locator::text = nullptr;
 ImageManager* Locator::images = nullptr;
+SoundManager * Locator::sound = nullptr;
+LevelManager* Locator::levels = nullptr;
+PathfindingManager* Locator::path_finder = nullptr;
 Locator::Locator()
 {
 }
@@ -34,6 +37,21 @@ void Locator::SetImageManager(ImageManager * i)
 	images = i;
 }
 
+void Locator::SetSoundManager(SoundManager * s)
+{
+	sound = s;
+}
+
+void Locator::SetLevelManager(LevelManager * l)
+{
+	levels = l;
+}
+
+void Locator::SetPathFinder(PathfindingManager * p)
+{
+	path_finder = p;
+}
+
 ImageManager * Locator::Images()
 {
 	return images;
@@ -52,4 +70,19 @@ Renderer * Locator::Graphics()
 TextManager * Locator::Text()
 {
 	return text;
+}
+
+SoundManager * Locator::Audio()
+{
+	return sound;
+}
+
+LevelManager * Locator::Levels()
+{
+	return levels;
+}
+
+PathfindingManager * Locator::PathFinding()
+{
+	return path_finder;
 }

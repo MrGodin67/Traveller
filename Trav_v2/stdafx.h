@@ -1,5 +1,5 @@
 #pragma once
-#define NOMINMAX
+#include "ChiliWin.h"
 #include <Windows.h>
 #include <d2d1.h>
 #include <wincodec.h>
@@ -11,7 +11,12 @@
 #include <unordered_map>
 #include <array>
 #include <dwrite.h>
-
+#include <utility>
+#include <assert.h>
+#include <thread>
+#include <future>
+#include <queue>
+#include <mutex> 
 #include "randomizer.h"
 #include "RangeBased.h"
 #include "D2DStuff.h"
@@ -68,6 +73,13 @@ inline static bool LittleEndian()
 	return ((int)*c == i);
 }
 
+template <typename Type, typename... TArgs>
+Type* MakeNew(TArgs&&... mArgs)
+{
+	Type* obj(new Type(std::forward<TArgs>(mArgs)...));
+	return std::move(obj);
+
+}
 template <typename Type, typename... TArgs>
 std::unique_ptr<Type> MakeUnique(TArgs&&... mArgs)
 {

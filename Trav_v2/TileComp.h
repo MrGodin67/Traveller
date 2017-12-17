@@ -6,7 +6,7 @@ class TileComp :
 {
 	ID2D1Bitmap* image;
 	RectF srcRect;
-	float transparency;
+	float transparency = 1.0f;
 public:
 	TileComp();
 	TileComp(ID2D1Bitmap* image, const RectF& srcRect);

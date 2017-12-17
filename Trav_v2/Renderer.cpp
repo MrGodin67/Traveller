@@ -2,7 +2,7 @@
 #include "Renderer.h"
 #include "D2DWindow.h"
 #include "Locator.h"
-#include <d2d1effects.h>
+
 Renderer::Renderer()
 {
 	CreateDeviceIndependentResources();
@@ -59,7 +59,7 @@ void Renderer::RenderText(const std::wstring & text, IDWriteTextFormat * pFormat
 {
 	m_DefaultBrush->SetColor(color);
 	m_RenderTarget->SetTransform(trans);
-	m_RenderTarget->DrawTextW(text.c_str(), (UINT)text.size(), pFormat, destRect, m_DefaultBrush);
+	m_RenderTarget->DrawText(text.c_str(), (UINT)text.size(), pFormat, destRect, m_DefaultBrush);
 }
 
 void Renderer::DrawRectangle(const D2DMatrix & trans, const D2DRectF & destRect, const D2D1_COLOR_F & color)
@@ -67,6 +67,13 @@ void Renderer::DrawRectangle(const D2DMatrix & trans, const D2DRectF & destRect,
 	m_RenderTarget->SetTransform(trans);
 	m_DefaultBrush->SetColor(color);
 	m_RenderTarget->DrawRectangle(destRect, m_DefaultBrush);
+}
+
+void Renderer::DrawLine(const D2DMatrix & trans, const D2DPointF * points, const D2D1_COLOR_F & color)
+{
+	m_RenderTarget->SetTransform(trans);
+	m_DefaultBrush->SetColor(color);
+	m_RenderTarget->DrawLine(points[0],points[1], m_DefaultBrush);
 }
 
 void Renderer::DrawFilledRectangle(const D2DMatrix & trans, const D2DRectF & destRect, const D2D1_COLOR_F & color)

@@ -15,8 +15,8 @@ struct LevelData
 	int image_size;
 	float back_color[4];
 	wchar_t image_path[MAX_PATH];
-	int mapLayer1[MAX_MAP_SIZE];
-	int mapLayer2[MAX_MAP_SIZE];
+	int mapLayers[2][MAX_MAP_SIZE];
+	int layer_count;
 
 
 };

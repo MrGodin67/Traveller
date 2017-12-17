@@ -39,6 +39,10 @@ public:
 	{
 		return size;
 	}
+	Vec2f Facing()
+	{
+		return{ matRotation._21,matRotation._22 };
+	}
 	RectF Rect()
 	{
 		return{position.x,position.y,position.x + size.width,position.y + size.height};
@@ -55,6 +59,12 @@ public:
 	void  Rotate(const float& angle)
 	{
 		matRotation = D2D1::Matrix3x2F::Rotation(angle, center.ToD2DPointF());
+	
+	}
+	void  Rotate()
+	{
+		matRotation = D2D1::Matrix3x2F::Rotation(angle, center.ToD2DPointF());
+
 	}
 	void  Scale(const Vec2f& dimensions)
 	{
@@ -74,4 +84,6 @@ public:
 	Vec2f position = { 0.0f,0.0f };
 	Vec2f velocity = { 0.0f,0.0f };
 	float acceleration = 0.0f;
+	float angle = 0.0f;
+	
 };

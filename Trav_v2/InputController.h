@@ -11,6 +11,9 @@ class InputController :
 	std::unordered_map<unsigned char, bool> keyDown;
 	bool canMove = true;
 	Vec2f velocity;
+	float angle = 0.0f;
+	float speed = 0.1f;
+	float maxSpeed = 10.0f;
 public:
 	
 	InputController(Keyboard& kbd);

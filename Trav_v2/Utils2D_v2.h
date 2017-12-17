@@ -52,6 +52,10 @@ public:
 	{
 		return (T)atan2(y, x);
 	}
+	inline T Angle2()
+	{
+		return ((float)atan2((y), (x)) * 180.0f / K_PI);
+	}
 	inline void ConfineLength(T len)
 	{
 		x = (T)cosf(Angle()) * len;
@@ -65,6 +69,16 @@ public:
 	inline T		Len() const
 	{
 		return sqrt(LenSq());
+	}
+	inline _Vec2&	Absolute()
+	{
+		_Vec2 result;
+		result.x = (T)abs(x);
+		result.y = (T)abs(y);
+		return result;
+	}
+	_Vec2 Lerp(_Vec2 a, _Vec2 b, float t) {
+		return (a*(1.0f - t) + b*t);
 	}
 	inline _Vec2&	Normalize()
 	{
@@ -485,3 +499,42 @@ public:
 	static bool BoundingBox(const AABBF& A, const AABBF& B);
 	static bool BoundingBoxToSphere(const AABBF& box, const SphereF& sphere);
 };
+static const float K_PI = 3.141592654f;
+static void Tokenize(std::vector<std::string>* tokens, std::string s, std::string delimiter)
+{
+	// check that is still valid
+	while (s.find(delimiter, 0) != std::string::npos) {
+		// get pos of next delimiter
+		size_t pos = s.find(delimiter, 0);
+		// create a token
+		std::string token = s.substr(0, pos);
+		// erase the current token 
+		s.erase(0, pos + 1);
+		// add the token to  vector
+		tokens->push_back(token);
+	}
+	// push the last token
+	tokens->push_back(s);
+}
+static __inline float DegToRad(float angle) { return angle * K_PI / 180.0f; }
+static __inline float RadToDeg(float rad) { return rad * 180.0f / K_PI; }
+static __inline float GetAngleBetweenPoints(Vec2f firstPoint, Vec2f secondPoint) {
+
+	if ((secondPoint.x > firstPoint.x)) {
+
+		return ((float)atan2((secondPoint.x - firstPoint.x), (firstPoint.y - secondPoint.y)) * 180.0f / K_PI);
+
+	}
+	else if ((secondPoint.x < firstPoint.x)) {
+
+		return 360.0f - ((float)atan2((firstPoint.x - secondPoint.x), (firstPoint.y - secondPoint.y)) * 180.0f / K_PI);
+
+	}
+
+	return atan2(0.0f, 0.0f);
+
+}
+static __inline float GetRadiansBetweenPoints(Vec2f firstPoint, Vec2f secondPoint)
+{
+	return DegToRad(GetAngleBetweenPoints(firstPoint, secondPoint));
+}
