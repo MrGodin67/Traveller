@@ -26,6 +26,7 @@ class Game
 	std::unique_ptr<ImageManager> m_imageMgr;
 	Level* m_testLevel;
 	Actor* player;
+	Actor* player2;
 	Camera m_cam;
 	GameState m_gameState = GameState::running;
 	

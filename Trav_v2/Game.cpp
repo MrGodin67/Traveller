@@ -81,6 +81,18 @@ void Game::InitPlayer()
 	//player->AddGroup(groupMapLayer1);
 	player->AddGroup(groupPlayers);
 
+	//player2 = &m_EntityMgr->Add<Actor>(*m_EntityMgr.get());
+	//player2->Add<Transform>(Vec2f(100.0f, 150.0f), Vec2f(0.0f, 0.0f), Vec2f(48.0f, 48.0f));
+	//player2->Add<Body>(m_imageMgr->Load("tank_1", L"assets\\images\\tank1_body.png"));
+	//player2->Add<Turret>(m_imageMgr->Load("turret_1", L"assets\\images\\tank1_gun.png"));
+	//player2->Add<Collider>(Vec2f(100.0f, 100.0f) + (Vec2f(48.0f, 48.0f)*0.5f), (Vec2f(48.0f, 48.0f)*0.5f));
+	//player2->Add<FollowCompanion>(player, 400.0f);
+	//player2->Get<Transform>().acceleration = 70.0f;
+
+	////player->AddGroup(groupMapLayer1);
+	////player->AddGroup(groupPlayers);
+	//player2->AddGroup(groupPlayers);
+
 	m_cam.UpdatePosition(player->Get<Transform>().Center());
 
 	

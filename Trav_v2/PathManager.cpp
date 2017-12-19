@@ -4,26 +4,34 @@
 #include "newAStar.h"
 MyAStar* PathfindingManager::m_pathFinder = nullptr;
 std::mutex PathfindingManager::lk1;
-//std::mutex PathfindingManager::lk2;
+
 
 // function for thread
  std::vector<Vec2f> PathfindingManager::_getPath(const Vec2f& start, const Vec2f& end)
 {
-	 //std::lock(lk1);
+	
 	 lk1.lock();
 	 std::vector<Vec2f> path  =  m_pathFinder->getPath(start, end);
 	 lk1.unlock();
-	 //lk2.unlock();
+	
 	 return path;
 }
 
- void PathfindingManager::removeFromQueue(int & index)
+ void PathfindingManager::refreshQueue()
  {
-	 if (m_queue[index])
-		 delete m_queue[index];
+	
+	 m_queue.erase(std::remove_if(std::begin(m_queue), std::end(m_queue),
+		 [](PathRequest* p)
+	 {
+		 bool done = p->done;
+		 if (done)
+			 delete p;
+		 return done;
+	 }), std::end(m_queue));
+	 
+	
 
-	 m_queue.erase(m_queue.begin() + index);
-	 index--;
+	
  }
 
  PathfindingManager::PathfindingManager()
@@ -86,8 +94,9 @@ void PathfindingManager::checkForDone()
 			{
 				m_queue[i]->owner->Add<Path>(p);
 				m_queue[i]->owner->AddGroup(groupPathFollowing);
-				removeFromQueue(i);
+				m_queue[i]->done = true;
 			}
 		}
 	}
+	refreshQueue();
 }

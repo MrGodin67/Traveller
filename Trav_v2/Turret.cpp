@@ -32,6 +32,7 @@ void Turret::Translate(const Vec2f & offset)
 
 void Turret::Update(const float & dt)
 {
-	angle += 1.1f;
+	angle += -1.1f;
+	angle = ((int)angle % 360) + (angle < 0.0f ? 360.0f : 0.0f);
 	Rotate(angle);
 }
