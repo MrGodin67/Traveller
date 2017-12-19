@@ -48,18 +48,18 @@ public:
 	{
 		return{ (T2)x,(T2)y };
 	}
-	inline T Angle()
+	inline T Radian()
 	{
 		return (T)atan2(y, x);
 	}
-	inline T Angle2()
+	inline T Angle()
 	{
 		return ((float)atan2((y), (x)) * 180.0f / K_PI);
 	}
 	inline void ConfineLength(T len)
 	{
-		x = (T)cosf(Angle()) * len;
-		y = (T)sinf(Angle()) * len;
+		x = (T)cosf(Radian()) * len;
+		y = (T)sinf(Radian()) * len;
 
 	}
 	inline T		LenSq() const

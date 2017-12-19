@@ -2,7 +2,7 @@
 #include "Components.h"
 #include "Camera.h"
 
-#include "system.h"
+
 struct Partition
 {
 	std::vector<Entity*> items;
@@ -17,6 +17,7 @@ class EntityManager
 	std::size_t  m_currentPlayer = 0;
 	void FrustumCull(Entity* ent);
 	void HandlePlayer(const float& dt);
+	
 	//void PickUpItem(Entity* item, Actor* actor);
 public:
 	EntityManager(Camera& cam)
@@ -32,7 +33,8 @@ public:
 	void RemoveFromGroup(Entity* ent, const GroupID& id);
 	std::vector<Entity*>& GetGroup(const GroupID& id);
 	void AquireTarget(Entity* ent);
-	void TransformPosition(const Vec2f& offset);
+	
+	void GetPath(Entity* ent,const Vec2f& targetPosition);
 	// add / get generic entity
 	Entity& Add();
 	// add / get with transform

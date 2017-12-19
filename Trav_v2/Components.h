@@ -14,5 +14,7 @@
 #include "Animation.h"
 #include "Ammo.h"
 #include "Path.h"
+#include "Body.h"
+#include "Turret.h"
 //#include "Locator.h"
 #include "Utils2D_v2.h"

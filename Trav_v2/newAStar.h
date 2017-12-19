@@ -331,16 +331,16 @@ public:
 		newNode* startNode = getNode(start);
 		newNode* endNode = getNode(end);
 		// if invalid position(s)
-		std::vector<Vec2f> dead_find;
-		dead_find.emplace_back(Vec2f( DEAD_VALUE_FLOAT, DEAD_VALUE_FLOAT ));
+		
+		
 		if (startNode == endNode)
-			return dead_find;
+			return std::vector<Vec2f>();
 
 		if (!startNode || !endNode)
-			return dead_find;
+			return std::vector<Vec2f>();
 		
 		if ((startNode && !startNode->passable) || (endNode && !endNode->passable))
-			return dead_find;
+			return std::vector<Vec2f>();
 
 
 		closed_list.clear();
@@ -377,7 +377,7 @@ public:
 
 			}
 		}
-		return dead_find;
+		return std::vector<Vec2f>();
 	}
 	
 	newNode* getNode(Vec2f pos)

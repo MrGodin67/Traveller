@@ -6,7 +6,7 @@
 #include "Mouse.h"
 #include "GameState.h"
 #include "Level.h"
-
+#include "Actor.h"
 
 
 
@@ -23,9 +23,9 @@ class Game
 	std::unique_ptr<SoundManager> m_soundMgr;
 	std::unique_ptr<PathfindingManager> m_pathFindingMgr;
 	std::unique_ptr<TextManager> m_textMgr;
-	std::unique_ptr<LevelManager> m_levelMgr;
 	std::unique_ptr<ImageManager> m_imageMgr;
-	std::unique_ptr<Level> m_testLevel;
+	Level* m_testLevel;
+	Actor* player;
 	Camera m_cam;
 	GameState m_gameState = GameState::running;
 	
@@ -37,6 +37,7 @@ private:
 	void InitUI();
 	void InitManagers();
 	void InitText();
+	void InitPlayer();
 	void HandleUserInput(Mouse::Event& mouseEvent,Keyboard::Event& kbdEvent);
 public:
 	Game(D2DWindow& window);

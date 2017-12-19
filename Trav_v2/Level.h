@@ -20,7 +20,7 @@ const static char mapNames[10][MAX_PATH] =
 class Level
 {
 	
-	int * path_map = nullptr;
+	int path_map[MAX_MAP_SIZE];;
 	LevelData data;
 	ID2D1Bitmap* m_image = nullptr;
 	Vec2i worldDims;
@@ -31,7 +31,7 @@ public:
 	void CreateLevel(EntityManager* entMgr,const int& index);
 	Vec2i MapDimensions()const;
 	Vec2f CellDimensions()const;
-	int * PathMap()const;
+	int* PathMap();
 	~Level();
 };
 

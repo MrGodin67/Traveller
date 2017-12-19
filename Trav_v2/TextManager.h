@@ -1,6 +1,6 @@
 #pragma once
 #pragma comment(lib, "dwrite.lib")
-#include "system.h"
+
 using FontPair = std::pair<std::wstring, float>;
 using FontMap  =  std::unordered_map<std::string, IDWriteTextFormat*> ;
 class TextManager 

@@ -51,6 +51,7 @@ enum  GroupLabels : std::size_t
 	groupRender,
 	groupLight,
 	groupAmmo,
+	groupPathFollowing,
 	groupNumGroups
 };
 

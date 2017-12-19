@@ -1,6 +1,6 @@
 #pragma once
 #include "Utils2D_v2.h"
-#include "system.h"
+
 class Renderer 
 {
 	ID2D1Factory* m_Direct2dFactory = nullptr;

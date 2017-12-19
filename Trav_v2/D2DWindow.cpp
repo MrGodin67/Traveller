@@ -169,8 +169,8 @@ LRESULT D2DWindow::WndProc(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam
 			{
 				ReleaseCapture();
 				mouse.OnMouseLeave();
-				mouse.OnLeftReleased(pt.x, pt.y);
-				mouse.OnRightReleased(pt.x, pt.y);
+				//mouse.OnLeftReleased(pt.x, pt.y);
+				//mouse.OnRightReleased(pt.x, pt.y);
 			}
 		}
 		break;

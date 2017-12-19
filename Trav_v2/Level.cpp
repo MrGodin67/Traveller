@@ -21,12 +21,12 @@ void Level::CreateLevel(EntityManager* entMgr, const int& index)
 	// the tags in data.map are relative to where they
 	// are in the bitmap
 	const Vec2f velocity = { 0.0f,0.0f };// no velocitiy
-	const Vec2f size((float)data.image_size, (float)data.image_size);
+	const Vec2f size((float)data.cell_width, (float)data.cell_height);
 	GroupID groupTag;
 	int columnsP = data.width / 6;
 	int rowsP = data.height / 6;
 	int * map = nullptr;
-	path_map = new int(data.width*data.height);
+	
 	for (int i : Iterate(0, data.layer_count))
 	{
 
@@ -53,9 +53,9 @@ void Level::CreateLevel(EntityManager* entMgr, const int& index)
 				{
 
 					// get where we are on the image to make a clipping rectangle
-					float x = (float)(mapTag % columns) * (float)data.cell_width;// data.cell_width;
-					float y = (float)(mapTag / columns) * (float)data.cell_height;// data.cell_height;
-					RectF sourceRect = { x,y,x + (float)data.cell_width,y + (float)data.cell_height };
+					float x = (float)(mapTag % columns) * (float)data.image_size;// data.cell_width;
+					float y = (float)(mapTag / columns) * (float)data.image_size;// data.cell_height;
+					RectF sourceRect = { x,y,x + (float)data.image_size,y + (float)data.image_size};
 					// create entity with a transform
 
 
@@ -145,7 +145,7 @@ Vec2f Level::CellDimensions() const
 	return cellDims;
 }
 
-int * Level::PathMap()const
+int* Level::PathMap()
 {
 	return path_map;
 }
@@ -153,5 +153,5 @@ int * Level::PathMap()const
 
 Level::~Level()
 {
-	SafeDeleteArray(&path_map);
+	
 }

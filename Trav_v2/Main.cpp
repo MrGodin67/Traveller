@@ -17,11 +17,6 @@ int WINAPI WinMain(	HINSTANCE ,	HINSTANCE,	LPSTR,	int )
 		// create in this order
 		D2DWindow wind(scrnW, scrnH);
 		Game app(wind);
-		
-
-		
-		
-		
 		SimpleTimer timer;
 		timer.Reset();
 		

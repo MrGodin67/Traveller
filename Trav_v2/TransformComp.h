@@ -41,7 +41,7 @@ public:
 	}
 	Vec2f Facing()
 	{
-		return{ matRotation._21,matRotation._22 };
+		return{ matRotation._11,matRotation._12 };
 	}
 	RectF Rect()
 	{
@@ -54,7 +54,9 @@ public:
 	}
 	D2D1_MATRIX_3X2_F Matrix()
 	{
-		return matRotation* matScale* matTrans ;
+		Translate(matRotation);
+		Translate(matScale);
+		return  matTrans ;
 	}
 	void  Rotate(const float& angle)
 	{
@@ -76,7 +78,7 @@ public:
 	{
 		matTrans = D2D1::Matrix3x2F::Translation({ offset.x,offset.y });
 	}
-	void Translate(const D2D1::Matrix3x2F& mat)
+	void Translate(const D2D1_MATRIX_3X2_F& mat)
 	{
 		matTrans = mat * matTrans;
 	}

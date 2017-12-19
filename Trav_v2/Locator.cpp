@@ -6,7 +6,6 @@ Renderer* Locator::renderer = nullptr;
 TextManager* Locator::text = nullptr;
 ImageManager* Locator::images = nullptr;
 SoundManager * Locator::sound = nullptr;
-LevelManager* Locator::levels = nullptr;
 PathfindingManager* Locator::path_finder = nullptr;
 Locator::Locator()
 {
@@ -42,11 +41,6 @@ void Locator::SetSoundManager(SoundManager * s)
 	sound = s;
 }
 
-void Locator::SetLevelManager(LevelManager * l)
-{
-	levels = l;
-}
-
 void Locator::SetPathFinder(PathfindingManager * p)
 {
 	path_finder = p;
@@ -75,11 +69,6 @@ TextManager * Locator::Text()
 SoundManager * Locator::Audio()
 {
 	return sound;
-}
-
-LevelManager * Locator::Levels()
-{
-	return levels;
 }
 
 PathfindingManager * Locator::PathFinding()

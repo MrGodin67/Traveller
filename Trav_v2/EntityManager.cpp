@@ -6,7 +6,7 @@
 void EntityManager::Draw()
 {
 	// render by layers
-	for (auto& ent : GetGroup(groupMapLayer1))ent->Draw();
+	//for (auto& ent : GetGroup(groupMapLayer1))ent->Draw();
 	for (auto& ent : GetGroup(groupRender))ent->Draw();
 	for (auto& ent : GetGroup(groupItems))ent->Draw();
 	for (auto& ent : GetGroup(groupEnemies))ent->Draw();
@@ -19,7 +19,14 @@ void EntityManager::Draw()
 
 void EntityManager::Update(const float & dt)
 {
-	
+	for (auto& ent : GetGroup(groupPathFollowing))
+	{
+		if (ent->Get<Path>().Completed())
+		{
+			ent->RemoveGroup(groupPathFollowing);
+			ent->Remove<Path>();
+		}
+	}
 	GetGroup(groupRender).clear();
 	// map first
 	HandlePlayer(dt);
@@ -95,8 +102,7 @@ void EntityManager::FrustumCull(Entity* ent)
 {
 	if (ent->Get<Transform>().Rect().Overlaps(m_cam.Frustum()))
 		ent->AddGroup(groupRender);
-	else
-		ent->RemoveGroup(groupRender);
+	
 	
 }
 
@@ -149,7 +155,7 @@ void EntityManager::HandlePlayer(const float& dt)
 			
 		}
 		m_cam.UpdatePosition(GetGroup(groupPlayers)[m_currentPlayer]->Get<Transform>().Center());
-		
+		players->Get<Turret>().Translate(-m_cam.GetPosition());
 		players->Get<Transform>().Translate(-m_cam.GetPosition());
 		
 	}
@@ -194,10 +200,11 @@ void EntityManager::AquireTarget(Entity * ent)
 	
 }
 
-void EntityManager::TransformPosition(const Vec2f & offset)
+
+
+void EntityManager::GetPath(Entity * ent, const Vec2f & targetPosition)
 {
-	for (auto& it : entities)
-		it->Get<Transform>().Translate(offset);
+	Locator::PathFinding()->requestPath(ent->Get<Transform>().Center(), targetPosition, ent);
 }
 
 Entity & EntityManager::Add()

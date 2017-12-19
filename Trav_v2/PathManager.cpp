@@ -84,9 +84,8 @@ void PathfindingManager::checkForDone()
 			std::vector<Vec2f> p = m_queue[i]->thread.get();
 			if (p.size() > 0 )
 			{
-				if(p[0] != Vec2f(DEAD_VALUE_FLOAT, DEAD_VALUE_FLOAT))
-				    m_queue[i]->owner->Add<Path>(p);
-				
+				m_queue[i]->owner->Add<Path>(p);
+				m_queue[i]->owner->AddGroup(groupPathFollowing);
 				removeFromQueue(i);
 			}
 		}
