@@ -12,17 +12,22 @@ class EntityManager
 {
 	std::vector<std::unique_ptr<Entity>> entities;
 	std::array<std::vector<Entity*>, maxGroups> groups;
-
+	typedef std::vector<std::unique_ptr<Entity>>::iterator m_entityItr;
+	typedef std::vector<std::unique_ptr<Entity>>::const_iterator m_entityConstItr;
+	m_entityItr ItrStart;
+	m_entityItr ItrEnd;
 	Camera& m_cam;
 	std::size_t  m_currentPlayer = 0;
 	void FrustumCull(Entity* ent);
 	void HandlePlayer(const float& dt);
-	
+	void SetIterators();
 	//void PickUpItem(Entity* item, Actor* actor);
 public:
 	EntityManager(Camera& cam)
 		:m_cam(cam)
-	{}
+	{
+		
+	}
 
 	void Draw();
 	void Update(const float& dt);
@@ -45,7 +50,7 @@ public:
 		Type* ent(new Type(std::forward<TArgs>(mArgs)...));
 		std::unique_ptr<Type> uPtr{ ent };
 		entities.emplace_back(std::move(uPtr));
-
+		SetIterators();
 		return *ent;
 	}
 	

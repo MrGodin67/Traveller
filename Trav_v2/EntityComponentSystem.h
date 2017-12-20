@@ -51,6 +51,7 @@ protected:
 	ComponentArray m_componentArray;
 	GroupBitSet m_groupBitSet;
 	std::vector<std::unique_ptr<Component>> m_components;
+	
 	bool m_active = true;
 	bool m_selected = false;
 	std::wstring name;
@@ -76,7 +77,7 @@ public:
 	virtual void DiffuseAlpha(const float& val);
 	//~
 	bool Selected()const { return m_selected; }
-	bool Active()const { return m_active; };
+	bool Active() { return m_active; };
 	void Destroy() { m_active = false; }
 	template <typename Type>
 	void Remove()
@@ -136,6 +137,10 @@ public:
 	{
 		m_groupBitSet[id] = false;
 	}
+};
+struct EntityActive
+{
+	bool operator()(const std::unique_ptr<Entity>& ent) { return !ent->Active(); }
 };
 
 

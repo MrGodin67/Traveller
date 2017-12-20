@@ -158,6 +158,7 @@
     <ClCompile Include="EquippedItems.cpp" />
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Group.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="IUserInterface.cpp" />
     <ClCompile Include="Keyboard.cpp" />
@@ -212,6 +213,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="D2DStuff.h" />
+    <ClInclude Include="Group.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="newAStar.h" />
     <ClInclude Include="Path.h" />

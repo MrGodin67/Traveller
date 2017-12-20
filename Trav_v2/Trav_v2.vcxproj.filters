@@ -31,9 +31,6 @@
     <Filter Include="Objects">
       <UniqueIdentifier>{48b21499-dc51-4e0d-a3a3-97d4377962c5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Objects\Items">
-      <UniqueIdentifier>{485d3206-fe15-41e7-972e-b175ef6b1d62}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Levels">
       <UniqueIdentifier>{f77d6d0d-7353-49b5-b58f-f2888022feb8}</UniqueIdentifier>
     </Filter>
@@ -156,9 +153,6 @@
     <ClCompile Include="ColliderComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="newAStar.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
     <ClCompile Include="Path.cpp">
       <Filter>ECS\Components</Filter>
     </ClCompile>
@@ -181,6 +175,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Turret.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="newAStar.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Group.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -311,9 +311,6 @@
     <ClInclude Include="EntityContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Types.h">
-      <Filter>Objects\Items</Filter>
-    </ClInclude>
     <ClInclude Include="Inventory.h">
       <Filter>ECS\Components</Filter>
     </ClInclude>
@@ -344,9 +341,6 @@
     <ClInclude Include="DXErr.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="newAStar.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Path.h">
       <Filter>ECS\Components</Filter>
     </ClInclude>
@@ -369,6 +363,15 @@
       <Filter>ECS\Components</Filter>
     </ClInclude>
     <ClInclude Include="Turret.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="newAStar.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Group.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

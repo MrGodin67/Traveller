@@ -64,7 +64,7 @@ void EntityManager::Update(const float & dt)
 
 void EntityManager::Refresh()
 {
-	
+	SetIterators();
 	for (auto i(0u); i < maxGroups; i++)
 	{
 		auto& v(groups[i]);
@@ -75,12 +75,8 @@ void EntityManager::Refresh()
 		}
 		), std::end(v));
 	}
-	
-	entities.erase(std::remove_if(std::begin(entities), std::end(entities),
-		[](const std::unique_ptr<Entity>& inEnt)
-	{
-		return !inEnt->Active();
-	}), std::end(entities));
+	if(!entities.empty())
+	   entities.erase(std::remove_if(ItrStart,ItrEnd,EntityActive()), ItrEnd);
 }
 
 void EntityManager::DestroyAll()
@@ -162,6 +158,12 @@ void EntityManager::HandlePlayer(const float& dt)
 	
 }
 
+void EntityManager::SetIterators()
+{
+	ItrStart = entities.begin();
+	ItrEnd = entities.end();
+}
+
 //void EntityManager::PickUpItem(Entity * item, Actor * actor)
 //{
 //	RemoveFromGroup(item, groupItems);
@@ -212,6 +214,7 @@ Entity & EntityManager::Add()
 	Entity * ent = new Entity(*this);
 	std::unique_ptr<Entity> uPtr{ ent };
 	entities.emplace_back(std::move(uPtr));
+	SetIterators();
 	return *ent;
 }
 // add with transform
@@ -221,6 +224,7 @@ Entity & EntityManager::Add( const Vec2f & pos,const Vec2f & vel,  const Vec2f &
 	ent->Add<Transform>(pos, vel, size);
 	std::unique_ptr<Entity> uPtr{ ent };
 	entities.emplace_back(std::move(uPtr));
+	SetIterators();
 	return *ent;
 }
 

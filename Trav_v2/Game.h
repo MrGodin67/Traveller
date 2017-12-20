@@ -7,6 +7,7 @@
 #include "GameState.h"
 #include "Level.h"
 #include "Actor.h"
+#include "Group.h"
 
 
 
@@ -30,7 +31,7 @@ class Game
 	Camera m_cam;
 	GameState m_gameState = GameState::running;
 	
-	
+	Group* group;
 private:
 	// Functons
 	void InitECS();
